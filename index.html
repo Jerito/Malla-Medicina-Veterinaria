@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Malla Interactiva Veterinaria</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+    }
+    .semestre {
+      margin-top: 30px;
+    }
+    .semestre h2 {
+      background-color: #ddd;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .ramo {
+      border: 1px solid #aaa;
+      padding: 10px;
+      margin: 8px;
+      display: inline-block;
+      border-radius: 10px;
+      min-width: 180px;
+      background-color: #eee;
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+    .ramo.activo {
+      background-color: #c3f7c3;
+      opacity: 1;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🐾 Malla Interactiva – Medicina Veterinaria</h1>
+
+  <div class="semestre">
+    <h2>Semestre 1</h2>
+    <div id="anatomia" class="ramo activo" onclick="aprobar('anatomia')">Anatomía Animal (6 SCT)</div>
+    <div id="biologia" class="ramo activo" onclick="aprobar('biologia')">Biología (5 SCT)</div>
+    <div id="botanica" class="ramo activo" onclick="aprobar('botanica')">Botánica (4 SCT)</div>
+    <div id="zoologia" class="ramo activo" onclick="aprobar('zoologia')">Zoología (4 SCT)</div>
+    <div id="intro" class="ramo activo" onclick="aprobar('intro')">Introducción a Med. Vet. (4 SCT)</div>
+    <div id="matematicas" class="ramo activo" onclick="aprobar('matematicas')">Matemáticas (4 SCT)</div>
+    <div id="comunicacion" class="ramo activo" onclick="aprobar('comunicacion')">Comunicación Oral y Escrita (3 SCT)</div>
+  </div>
+
+  <div class="semestre">
+    <h2>Semestre 2</h2>
+    <div id="anatomia_comp" class="ramo" onclick="aprobar('anatomia_comp')">Anatomía Comparada (6 SCT)</div>
+    <div id="bio_histo" class="ramo" onclick="aprobar('bio_histo')">Biol. del Desarrollo e Histología (6 SCT)</div>
+    <div id="quimica" class="ramo activo" onclick="aprobar('quimica')">Química (4 SCT)</div>
+    <div id="ecologia" class="ramo" onclick="aprobar('ecologia')">Ecología General (3 SCT)</div>
+    <div id="bioestadistica" class="ramo" onclick="aprobar('bioestadistica')">Bioestadística (4 SCT)</div>
+    <div id="herramientas" class="ramo activo" onclick="aprobar('herramientas')">Herramientas Computacionales (3 SCT)</div>
+    <div id="practica" class="ramo activo" onclick="aprobar('practica')">Práctica Formativa (1 SCT)</div>
+  </div>
+
+  <div id="info" style="margin-top: 30px;"></div>
+
+  <script>
+    const aprobados = [];
+
+    const ramos = {
+      anatomia:       { nombre: "Anatomía Animal", desbloquea: ["anatomia_comp"] },
+      biologia:       { nombre: "Biología", desbloquea: ["bio_histo"] },
+      botanica:       { nombre: "Botánica", desbloquea: ["ecologia"] },
+      zoologia:       { nombre: "Zoología", desbloquea: ["ecologia"] },
+      intro:          { nombre: "Introducción a Medicina Veterinaria", desbloquea: [] },
+      matematicas:    { nombre: "Matemáticas", desbloquea: ["bioestadistica"] },
+      comunicacion:   { nombre: "Comunicación Oral y Escrita", desbloquea: [] },
+      quimica:        { nombre: "Química", desbloquea: [] },
+      herramientas:   { nombre: "Herramientas Computacionales", desbloquea: [] },
+      practica:       { nombre: "Práctica Formativa", desbloquea: [] },
+      anatomia_comp:  { nombre: "Anatomía Comparada", requisitos: ["anatomia"], desbloquea: [] },
+      bio_histo:      { nombre: "Biol. del Desarrollo e Histología", requisitos: ["biologia"], desbloquea: [] },
+      ecologia:       { nombre: "Ecología General", requisitos: ["zoologia", "botanica"], desbloquea: [] },
+      bioestadistica: { nombre: "Bioestadística", requisitos: ["matematicas"], desbloquea: [] }
+    };
+
+    function aprobar(id) {
+      const ramo = ramos[id];
+      if (!aprobados.includes(id)) {
+        aprobados.push(id);
+        document.getElementById("info").innerHTML = `✅ <strong>${ramo.nombre}</strong> ha sido aprobado.`;
+        desbloquear(id);
+      }
+    }
+
+    function desbloquear(idAprobado) {
+      for (let id in ramos) {
+        const ramo = ramos[id];
+        if (!document.getElementById(id).classList.contains("activo")) {
+          const requisitos = ramo.requisitos || [];
+          const cumplidos = requisitos.every(req => aprobados.includes(req));
+          if (cumplidos) {
+            document.getElementById(id).classList.add("activo");
+          }
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
