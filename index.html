@@ -29,7 +29,7 @@
       margin: 8px;
       display: inline-block;
       border-radius: 10px;
-      min-width: 180px;
+      min-width: 200px;
       background-color: #f3c7d5;
       opacity: 0.5;
       pointer-events: none;
@@ -56,24 +56,34 @@
 
   <div class="semestre">
     <h2>Semestre 1</h2>
-    <div id="anatomia" class="ramo activo" onclick="aprobar('anatomia')">Anatomía Animal</div>
-    <div id="biologia" class="ramo activo" onclick="aprobar('biologia')">Biología</div>
-    <div id="botanica" class="ramo activo" onclick="aprobar('botanica')">Botánica</div>
-    <div id="zoologia" class="ramo activo" onclick="aprobar('zoologia')">Zoología</div>
-    <div id="intro" class="ramo activo" onclick="aprobar('intro')">Intro a Medicina Vet</div>
-    <div id="matematicas" class="ramo activo" onclick="aprobar('matematicas')">Matemáticas</div>
-    <div id="comunicacion" class="ramo activo" onclick="aprobar('comunicacion')">Comunicación Oral</div>
+    <div id="anatomia" class="ramo activo" onclick="aprobar('anatomia')">Anatomía Animal (6 SCT)</div>
+    <div id="biologia" class="ramo activo" onclick="aprobar('biologia')">Biología (5 SCT)</div>
+    <div id="botanica" class="ramo activo" onclick="aprobar('botanica')">Botánica (4 SCT)</div>
+    <div id="zoologia" class="ramo activo" onclick="aprobar('zoologia')">Zoología (4 SCT)</div>
+    <div id="intro" class="ramo activo" onclick="aprobar('intro')">Intro a Medicina Vet (4 SCT)</div>
+    <div id="matematicas" class="ramo activo" onclick="aprobar('matematicas')">Matemáticas (4 SCT)</div>
+    <div id="comunicacion" class="ramo activo" onclick="aprobar('comunicacion')">Comunicación Oral (3 SCT)</div>
   </div>
 
   <div class="semestre">
     <h2>Semestre 2</h2>
-    <div id="anatomia_comp" class="ramo" onclick="aprobar('anatomia_comp')">Anatomía Comparada</div>
-    <div id="bio_histo" class="ramo" onclick="aprobar('bio_histo')">Biol. Desarrollo e Histología</div>
-    <div id="quimica" class="ramo activo" onclick="aprobar('quimica')">Química</div>
-    <div id="ecologia" class="ramo" onclick="aprobar('ecologia')">Ecología General</div>
-    <div id="bioestadistica" class="ramo" onclick="aprobar('bioestadistica')">Bioestadística</div>
-    <div id="herramientas" class="ramo activo" onclick="aprobar('herramientas')">Herramientas Comp.</div>
-    <div id="practica" class="ramo activo" onclick="aprobar('practica')">Práctica Formativa</div>
+    <div id="anatomia_comp" class="ramo" onclick="aprobar('anatomia_comp')">Anatomía Comparada (6 SCT)</div>
+    <div id="bio_histo" class="ramo" onclick="aprobar('bio_histo')">Biol. Desarrollo e Histología (6 SCT)</div>
+    <div id="quimica" class="ramo activo" onclick="aprobar('quimica')">Química (4 SCT)</div>
+    <div id="ecologia" class="ramo" onclick="aprobar('ecologia')">Ecología General (3 SCT)</div>
+    <div id="bioestadistica" class="ramo" onclick="aprobar('bioestadistica')">Bioestadística (4 SCT)</div>
+    <div id="herramientas" class="ramo activo" onclick="aprobar('herramientas')">Herramientas Comp. (3 SCT)</div>
+    <div id="practica" class="ramo activo" onclick="aprobar('practica')">Práctica Formativa (1 SCT)</div>
+  </div>
+
+  <div class="semestre">
+    <h2>Semestre 3</h2>
+    <div id="fisio1" class="ramo" onclick="aprobar('fisio1')">Fisiología I (6 SCT)</div>
+    <div id="epidemio" class="ramo" onclick="aprobar('epidemio')">Epidemiología (4 SCT)</div>
+    <div id="bioquimica" class="ramo" onclick="aprobar('bioquimica')">Bioquímica (6 SCT)</div>
+    <div id="etologia" class="ramo activo" onclick="aprobar('etologia')">Etología y Bienestar Animal (4 SCT)</div>
+    <div id="bioetica" class="ramo activo" onclick="aprobar('bioetica')">Bioética y Deontología (3 SCT)</div>
+    <div id="economia" class="ramo" onclick="aprobar('economia')">Economía (4 SCT)</div>
   </div>
 
   <div id="info" style="margin-top: 30px;"></div>
@@ -82,20 +92,31 @@
     const aprobados = [];
 
     const ramos = {
-      anatomia:       { nombre: "Anatomía Animal", desbloquea: ["anatomia_comp"] },
-      biologia:       { nombre: "Biología", desbloquea: ["bio_histo"] },
-      botanica:       { nombre: "Botánica", desbloquea: ["ecologia"] },
-      zoologia:       { nombre: "Zoología", desbloquea: ["ecologia"] },
-      intro:          { nombre: "Introducción a Medicina Veterinaria", desbloquea: [] },
-      matematicas:    { nombre: "Matemáticas", desbloquea: ["bioestadistica"] },
-      comunicacion:   { nombre: "Comunicación Oral", desbloquea: [] },
-      quimica:        { nombre: "Química", desbloquea: [] },
-      herramientas:   { nombre: "Herramientas Computacionales", desbloquea: [] },
-      practica:       { nombre: "Práctica Formativa", desbloquea: [] },
-      anatomia_comp:  { nombre: "Anatomía Comparada", requisitos: ["anatomia"], desbloquea: [] },
-      bio_histo:      { nombre: "Biol. del Desarrollo e Histología", requisitos: ["biologia"], desbloquea: [] },
-      ecologia:       { nombre: "Ecología General", requisitos: ["zoologia", "botanica"], desbloquea: [] },
-      bioestadistica: { nombre: "Bioestadística", requisitos: ["matematicas"], desbloquea: [] }
+      // Semestre 1
+      anatomia: { nombre: "Anatomía Animal", desbloquea: ["anatomia_comp", "fisio1"] },
+      biologia: { nombre: "Biología", desbloquea: ["bio_histo", "inmunologia", "micro1"] },
+      botanica: { nombre: "Botánica", desbloquea: ["ecologia"] },
+      zoologia: { nombre: "Zoología", desbloquea: ["ecologia", "parasitologia"] },
+      intro: { nombre: "Intro a Medicina Vet", desbloquea: [] },
+      matematicas: { nombre: "Matemáticas", desbloquea: ["bioestadistica", "genetica", "epidemio", "economia"] },
+      comunicacion: { nombre: "Comunicación Oral", desbloquea: [] },
+
+      // Semestre 2
+      anatomia_comp: { nombre: "Anatomía Comparada", requisitos: ["anatomia"], desbloquea: [] },
+      bio_histo: { nombre: "Biol. del Desarrollo e Histología", requisitos: ["biologia"], desbloquea: [] },
+      quimica: { nombre: "Química", desbloquea: ["bioquimica", "fisio1"] },
+      ecologia: { nombre: "Ecología General", requisitos: ["zoologia", "botanica"], desbloquea: [] },
+      bioestadistica: { nombre: "Bioestadística", requisitos: ["matematicas"], desbloquea: ["epidemio", "genetica", "economia"] },
+      herramientas: { nombre: "Herramientas Computacionales", desbloquea: [] },
+      practica: { nombre: "Práctica Formativa", desbloquea: [] },
+
+      // Semestre 3
+      fisio1: { nombre: "Fisiología I", requisitos: ["anatomia", "quimica"], desbloquea: [] },
+      epidemio: { nombre: "Epidemiología", requisitos: ["bioestadistica"], desbloquea: [] },
+      bioquimica: { nombre: "Bioquímica", requisitos: ["quimica"], desbloquea: [] },
+      etologia: { nombre: "Etología y Bienestar Animal", desbloquea: [] },
+      bioetica: { nombre: "Bioética y Deontología", desbloquea: [] },
+      economia: { nombre: "Economía", requisitos: ["bioestadistica"], desbloquea: [] }
     };
 
     function aprobar(id) {
