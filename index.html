@@ -27,7 +27,6 @@
       font-size: 1.2em;
       color: #3b0a2e;
     }
-
     .ramo {
       border: 2px solid #a02c46;
       padding: 10px;
@@ -41,7 +40,6 @@
       cursor: default;
       transition: all 0.3s ease;
     }
-
     .ramo.activo {
       background-color: #a02c46;
       color: white;
@@ -49,14 +47,11 @@
       pointer-events: auto;
       cursor: pointer;
     }
-
     .ramo.aprobado {
       background-color: #6e5670;
       color: #dddddd;
       text-decoration: line-through;
     }
-
-    /* colores por semestre */
     .s1 h2 { background-color: #fbe4ec; }
     .s2 h2 { background-color: #e6d6f1; }
     .s3 h2 { background-color: #d2f5e3; }
@@ -71,107 +66,180 @@
 </head>
 <body>
   <h1>Medicina Veterinaria</h1>
+  <div id="contenedor"></div>
+<script>
+const datos = [];
 
-  <div class="semestre s1">
-    <h2>📚 Semestre 1</h2>
-    <div class="ramo">🐄 Anatomía Animal (6 SCT)</div>
-    <div class="ramo">🧬 Biología (5 SCT)</div>
-    <div class="ramo">🌿 Botánica (4 SCT)</div>
-    <div class="ramo">🦎 Zoología (4 SCT)</div>
-    <div class="ramo">🏥 Introducción a la Medicina Veterinaria (4 SCT)</div>
-    <div class="ramo">📐 Matemáticas (4 SCT)</div>
-    <div class="ramo">🗣️ Comunicación Oral y Escrita (3 SCT)</div>
-  </div>
+function agregarSemestre(nro, color, ramos) {
+  datos.push({ semestre: nro, color: color, ramos: ramos });
+}
 
-  <div class="semestre s2">
-    <h2>🧪 Semestre 2</h2>
-    <div class="ramo">🧍‍♂️ Anatomía Comparada (6 SCT)</div>
-    <div class="ramo">🧫 Biología del Desarrollo e Histología (6 SCT)</div>
-    <div class="ramo">⚗️ Química (4 SCT)</div>
-    <div class="ramo">🌎 Ecología General (3 SCT)</div>
-    <div class="ramo">📊 Bioestadística (4 SCT)</div>
-    <div class="ramo">🖥️ Herramientas Computacionales (3 SCT)</div>
-    <div class="ramo">🐾 Práctica Formativa (1 SCT)</div>
-  </div>
+function ramo(id, nombre, requisitos = []) {
+  return { id, nombre, requisitos };
+}
 
-  <div class="semestre s3">
-    <h2>🔬 Semestre 3</h2>
-    <div class="ramo">💉 Fisiología I (6 SCT)</div>
-    <div class="ramo">🧪 Epidemiología (4 SCT)</div>
-    <div class="ramo">🧬 Bioquímica (6 SCT)</div>
-    <div class="ramo">🐶 Etología y Bienestar Animal (4 SCT)</div>
-    <div class="ramo">⚖️ Bioética y Deontología (3 SCT)</div>
-    <div class="ramo">💰 Economía (4 SCT)</div>
-  </div>
+// SEMESTRE 1
+agregarSemestre(1, 's1', [
+  ramo("anatomia", "🐄 Anatomía Animal (6 SCT)"),
+  ramo("biologia", "🧬 Biología (5 SCT)"),
+  ramo("botanica", "🌿 Botánica (4 SCT)"),
+  ramo("zoologia", "🦎 Zoología (4 SCT)"),
+  ramo("intro", "🏥 Introducción a la Medicina Veterinaria (4 SCT)"),
+  ramo("matematicas", "📐 Matemáticas (4 SCT)"),
+  ramo("comunicacion", "🗣️ Comunicación Oral y Escrita (3 SCT)")
+]);
 
-  <div class="semestre s4">
-    <h2>💧 Semestre 4</h2>
-    <div class="ramo">🧠 Fisiología II (6 SCT)</div>
-    <div class="ramo">🛡️ Inmunología (5 SCT)</div>
-    <div class="ramo">🦠 Microbiología I (6 SCT)</div>
-    <div class="ramo">🦎 Manejo y Conservación de la Fauna Silvestre (3 SCT)</div>
-    <div class="ramo">🥩 Nutrición Animal (4 SCT)</div>
-    <div class="ramo">📋 Administración de Proyectos (4 SCT)</div>
-  </div>
+// SEMESTRE 2
+agregarSemestre(2, 's2', [
+  ramo("anatomia_comparada", "🧍‍♂️ Anatomía Comparada (6 SCT)", ["anatomia"]),
+  ramo("histologia", "🧫 Biología del Desarrollo e Histología (6 SCT)", ["biologia"]),
+  ramo("quimica", "⚗️ Química (4 SCT)"),
+  ramo("ecologia", "🌎 Ecología General (3 SCT)", ["zoologia", "botanica"]),
+  ramo("bioestadistica", "📊 Bioestadística (4 SCT)", ["matematicas"]),
+  ramo("computacion", "🖥️ Herramientas Computacionales (3 SCT)"),
+  ramo("practica", "🐾 Práctica Formativa (1 SCT)")
+]);
 
-  <div class="semestre s5">
-    <h2>🌞 Semestre 5</h2>
-    <div class="ramo">🩸 Fisiopatología (5 SCT)</div>
-    <div class="ramo">🐛 Parasitología (5 SCT)</div>
-    <div class="ramo">🧫 Microbiología II (5 SCT)</div>
-    <div class="ramo">🌍 Gestión Ambiental y en Emergencias (3 SCT)</div>
-    <div class="ramo">🌾 Alimentación Animal (4 SCT)</div>
-    <div class="ramo">📊 Planificación y Evaluación de Proyectos Pecuarios (3 SCT)</div>
-  </div>
+// SEMESTRE 3
+agregarSemestre(3, 's3', [
+  ramo("fisiologia1", "💉 Fisiología I (6 SCT)", ["anatomia", "quimica"]),
+  ramo("epidemiologia", "🧪 Epidemiología (4 SCT)", ["bioestadistica"]),
+  ramo("bioquimica", "🧬 Bioquímica (6 SCT)", ["quimica"]),
+  ramo("etologia", "🐶 Etología y Bienestar Animal (4 SCT)"),
+  ramo("bioetica", "⚖️ Bioética y Deontología (3 SCT)"),
+  ramo("economia", "💰 Economía (4 SCT)", ["bioestadistica"])
+]);
 
-  <div class="semestre s6">
-    <h2>🧪 Semestre 6</h2>
-    <div class="ramo">🐴 Semiología de Animales Mayores (5 SCT)</div>
-    <div class="ramo">🐶 Semiología de Animales Pequeños (5 SCT)</div>
-    <div class="ramo">🧬 Patología General (5 SCT)</div>
-    <div class="ramo">💊 Farmacología (4 SCT)</div>
-    <div class="ramo">🧬 Genética (4 SCT)</div>
-    <div class="ramo">🧫 Enfermedades Infecciosas (5 SCT)</div>
-  </div>
+// SEMESTRE 4
+agregarSemestre(4, 's4', [
+  ramo("fisiologia2", "🧠 Fisiología II (6 SCT)", ["fisiologia1"]),
+  ramo("inmunologia", "🛡️ Inmunología (5 SCT)", ["biologia", "bioquimica"]),
+  ramo("micro1", "🦠 Microbiología I (6 SCT)", ["biologia", "bioquimica"]),
+  ramo("fauna", "🦜 Manejo y Conservación de la Fauna Silvestre (3 SCT)", ["ecologia", "etologia"]),
+  ramo("nutricion", "🥩 Nutrición Animal (4 SCT)", ["bioquimica"]),
+  ramo("admin", "📈 Administración de Proyectos (4 SCT)", ["economia"])
+]);
 
-  <div class="semestre s7">
-    <h2>🐾 Semestre 7</h2>
-    <div class="ramo">🖼️ Imagenología (4 SCT)</div>
-    <div class="ramo">🧟 Anatomía Patológica (5 SCT)</div>
-    <div class="ramo">🧪 Patología Clínica (4 SCT)</div>
-    <div class="ramo">🐄 Zootecnia I (4 SCT)</div>
-    <div class="ramo">🥩 Inocuidad de los Alimentos (4 SCT)</div>
-    <div class="ramo">🐣 Reproducción (4 SCT)</div>
-    <div class="ramo">🎨 Electivo (3 SCT)</div>
-  </div>
+// SEMESTRE 5
+agregarSemestre(5, 's5', [
+  ramo("fisiopato", "🩸 Fisiopatología (5 SCT)", ["fisiologia2"]),
+  ramo("parasitologia", "🪱 Parasitología (5 SCT)", ["zoologia"]),
+  ramo("micro2", "🧫 Microbiología II (5 SCT)", ["micro1"]),
+  ramo("gestion", "🌋 Gestión Ambiental y en Emergencias (3 SCT)", ["fauna"]),
+  ramo("alimentacion", "🐄 Alimentación Animal (4 SCT)", ["nutricion"]),
+  ramo("planificacion", "📊 Planificación y Evaluación de Proyectos Pecuarios (3 SCT)", ["admin"])
+]);
+</script>
+<script>
+// SEMESTRE 6
+agregarSemestre(6, 's6', [
+  ramo("semio_mayores", "🐄 Semiología de Animales Mayores (5 SCT)", ["fisiopato"]),
+  ramo("semio_pequenos", "🐕 Semiología de Animales Pequeños (5 SCT)", ["fisiopato"]),
+  ramo("patologia_general", "🧬 Patología General (5 SCT)", ["fisiopato"]),
+  ramo("farmacologia", "💊 Farmacología (4 SCT)", ["fisiopato", "parasitologia", "micro2"]),
+  ramo("genetica", "🧬 Genética (4 SCT)", ["bioestadistica"]),
+  ramo("enfermedades_inf", "🦠 Enfermedades Infecciosas (5 SCT)", ["micro1", "parasitologia"])
+]);
 
-  <div class="semestre s8">
-    <h2>🧬 Semestre 8</h2>
-    <div class="ramo">🫀 Medicina Interna de Animales Mayores I (6 SCT)</div>
-    <div class="ramo">🐕 Medicina Interna de Animales Pequeños I (6 SCT)</div>
-    <div class="ramo">💉 Anestesiología y Cirugía (4 SCT)</div>
-    <div class="ramo">🐄 Zootecnia II (4 SCT)</div>
-    <div class="ramo">🦠 Patología de Producciones (4 SCT)</div>
-    <div class="ramo">🤰 Obstetricia y Ginecología (4 SCT)</div>
-    <div class="ramo">🔍 Metodología de la Investigación (3 SCT)</div>
-  </div>
+// SEMESTRE 7
+agregarSemestre(7, 's7', [
+  ramo("imagenologia", "🖼️ Imagenología (4 SCT)", ["anatomia_comparada", "semio_mayores", "semio_pequenos"]),
+  ramo("anatomia_patologica", "🧪 Anatomía Patológica (5 SCT)", ["anatomia_comparada", "patologia_general"]),
+  ramo("patologia_clinica", "🧫 Patología Clínica (4 SCT)", ["fisiopato"]),
+  ramo("zootecnia1", "🐮 Zootecnia I (4 SCT)", ["alimentacion", "planificacion"]),
+  ramo("inocuidad", "🥩 Inocuidad de los Alimentos (4 SCT)", ["epidemiologia", "enfermedades_inf"]),
+  ramo("reproduccion", "👶 Reproducción (4 SCT)", ["fisiologia2"]),
+  ramo("electivo7", "✨ Electivo (3 SCT)")
+]);
 
-  <div class="semestre s9">
-    <h2>🧠 Semestre 9</h2>
-    <div class="ramo">🐎 Medicina Interna de Animales Mayores II (6 SCT)</div>
-    <div class="ramo">🐩 Medicina Interna de Animales Pequeños II (6 SCT)</div>
-    <div class="ramo">🌎 Módulo Integrador: M.V en una Sola Salud (5 SCT)</div>
-    <div class="ramo">🐂 Zootecnia III (7 SCT)</div>
-    <div class="ramo">📖 Trabajo de Titulación I (3 SCT)</div>
-  </div>
+// SEMESTRE 8
+agregarSemestre(8, 's8', [
+  ramo("med_int_mayores1", "🐂 Medicina Interna de Animales Mayores I (6 SCT)", ["imagenologia", "anatomia_patologica", "patologia_clinica"]),
+  ramo("med_int_pequenos1", "🐶 Medicina Interna de Animales Pequeños I (6 SCT)", ["imagenologia", "anatomia_patologica", "patologia_clinica"]),
+  ramo("anestesia_cirugia", "💉 Anestesiología y Cirugía (4 SCT)", ["farmacologia", "imagenologia", "patologia_clinica"]),
+  ramo("zootecnia2", "🐷 Zootecnia II (4 SCT)", ["zootecnia1"]),
+  ramo("patologia_produccion", "🐓 Patología de las Producciones (4 SCT)", ["fisiopato", "zootecnia1"]),
+  ramo("obstetricia", "🤰 Obstetricia y Ginecología (4 SCT)", ["reproduccion"]),
+  ramo("metodo_invest", "🧪 Metodología de la Investigación (3 SCT)", ["epidemiologia"])
+]);
 
-  <div class="semestre s10">
-    <h2>🎓 Semestre 10</h2>
-    <div class="ramo">🐎 Internado Animales Mayores (6 SCT)</div>
-    <div class="ramo">🐶 Internado Animales Pequeños (6 SCT)</div>
-    <div class="ramo">🌱 Práctica Médica Preventiva y Ambiental (7 SCT)</div>
-    <div class="ramo">🎨 Electivo (3 SCT)</div>
-    <div class="ramo">📘 Trabajo de Titulación II (5 SCT)</div>
-  </div>
+// SEMESTRE 9
+agregarSemestre(9, 's9', [
+  ramo("med_int_mayores2", "🐃 Medicina Interna de Animales Mayores II (6 SCT)", ["med_int_mayores1"]),
+  ramo("med_int_pequenos2", "🐕‍🦺 Medicina Interna de Animales Pequeños II (6 SCT)", ["med_int_pequenos1"]),
+  ramo("modulo_salud", "🌍 Módulo Integrador: MV en Una Sola Salud (5 SCT)", ["med_int_mayores1", "med_int_pequenos1", "anestesia_cirugia", "zootecnia2", "patologia_produccion"]),
+  ramo("zootecnia3", "🐑 Zootecnia III (7 SCT)", ["zootecnia2"]),
+  ramo("titulo1", "📜 Trabajo de Titulación I (3 SCT)", ["med_int_mayores1", "med_int_pequenos1", "anestesia_cirugia", "zootecnia2", "patologia_produccion"])
+]);
+
+// SEMESTRE 10
+agregarSemestre(10, 's10', [
+  ramo("internado_mayores", "🏥 Internado de Animales Mayores (6 SCT)", ["med_int_mayores2"]),
+  ramo("internado_pequenos", "🏥 Internado de Animales Pequeños (6 SCT)", ["med_int_pequenos2"]),
+  ramo("prevencion", "🛡️ Práctica Médica Preventiva y Ambiental (7 SCT)", ["modulo_salud"]),
+  ramo("electivo10", "✨ Electivo (3 SCT)"),
+  ramo("titulo2", "📄 Trabajo de Titulación II (5 SCT)", ["titulo1"])
+]);
+</script>
+<script>
+function crearMalla() {
+  const contenedor = document.getElementById("contenedor");
+  const completados = new Set();
+
+  datos.forEach(({ semestre, color, ramos }) => {
+    const div = document.createElement("div");
+    div.className = `semestre ${color}`;
+
+    const titulo = document.createElement("h2");
+    titulo.textContent = `📚 Semestre ${semestre}`;
+    div.appendChild(titulo);
+
+    ramos.forEach(r => {
+      const ramoDiv = document.createElement("div");
+      ramoDiv.className = "ramo";
+      ramoDiv.textContent = r.nombre;
+      ramoDiv.dataset.id = r.id;
+      ramoDiv.dataset.requisitos = JSON.stringify(r.requisitos);
+      div.appendChild(ramoDiv);
+    });
+
+    contenedor.appendChild(div);
+  });
+
+  function actualizarEstado() {
+    document.querySelectorAll(".ramo").forEach(el => {
+      const requisitos = JSON.parse(el.dataset.requisitos || "[]");
+      const id = el.dataset.id;
+      const aprobado = completados.has(id);
+
+      if (aprobado) {
+        el.classList.remove("activo");
+        el.classList.add("aprobado");
+      } else if (requisitos.every(req => completados.has(req))) {
+        el.classList.add("activo");
+      } else {
+        el.classList.remove("activo");
+      }
+    });
+  }
+
+  document.addEventListener("click", e => {
+    if (e.target.classList.contains("activo")) {
+      const id = e.target.dataset.id;
+      if (completados.has(id)) {
+        completados.delete(id);
+      } else {
+        completados.add(id);
+      }
+      actualizarEstado();
+    }
+  });
+
+  actualizarEstado();
+}
+
+crearMalla();
+</script>
+
 </body>
 </html>
