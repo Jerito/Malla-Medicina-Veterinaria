@@ -2,40 +2,45 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Malla Interactiva Vet 💖</title>
+  <title>Medicina Veterinaria</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #fbe4ec;
+      background-color: #fffdfd;
       padding: 30px;
       color: #3b0a2e;
     }
     h1 {
       text-align: center;
       margin-bottom: 40px;
+      font-size: 2em;
     }
     .semestre {
       margin-top: 40px;
+      padding: 15px;
+      border-radius: 12px;
     }
     .semestre h2 {
-      background-color: #a02c46;
-      color: white;
       padding: 10px;
       border-radius: 10px;
+      color: white;
+      font-size: 1.2em;
     }
+
     .ramo {
       border: 2px solid #a02c46;
       padding: 10px;
-      margin: 8px;
+      margin: 6px;
       display: inline-block;
       border-radius: 10px;
-      min-width: 200px;
-      background-color: #f3c7d5;
+      min-width: 240px;
+      background-color: #fdf5f7;
       opacity: 0.5;
       pointer-events: none;
       cursor: default;
       transition: all 0.3s ease;
     }
+
     .ramo.activo {
       background-color: #a02c46;
       color: white;
@@ -43,47 +48,56 @@
       pointer-events: auto;
       cursor: pointer;
     }
+
     .ramo.aprobado {
       background-color: #6e5670;
       color: #dddddd;
       text-decoration: line-through;
     }
+
+    /* colores por semestre */
+    .s1 h2 { background-color: #fbe4ec; }
+    .s2 h2 { background-color: #e6d6f1; }
+    .s3 h2 { background-color: #d2f5e3; }
   </style>
 </head>
 <body>
 
-  <h1>🐴 Malla Interactiva – Medicina Veterinaria</h1>
+  <h1>Medicina Veterinaria</h1>
 
-  <div class="semestre">
-    <h2>Semestre 1</h2>
-    <div id="anatomia" class="ramo activo" onclick="aprobar('anatomia')">Anatomía Animal (6 SCT)</div>
-    <div id="biologia" class="ramo activo" onclick="aprobar('biologia')">Biología (5 SCT)</div>
-    <div id="botanica" class="ramo activo" onclick="aprobar('botanica')">Botánica (4 SCT)</div>
-    <div id="zoologia" class="ramo activo" onclick="aprobar('zoologia')">Zoología (4 SCT)</div>
-    <div id="intro" class="ramo activo" onclick="aprobar('intro')">Intro a Medicina Vet (4 SCT)</div>
-    <div id="matematicas" class="ramo activo" onclick="aprobar('matematicas')">Matemáticas (4 SCT)</div>
-    <div id="comunicacion" class="ramo activo" onclick="aprobar('comunicacion')">Comunicación Oral (3 SCT)</div>
+  <!-- SEMESTRE 1 -->
+  <div class="semestre s1">
+    <h2>🐣 Semestre 1</h2>
+    <div id="anatomia" class="ramo activo" onclick="aprobar('anatomia')">🦴 Anatomía Animal (6 SCT)</div>
+    <div id="biologia" class="ramo activo" onclick="aprobar('biologia')">🧬 Biología (5 SCT)</div>
+    <div id="botanica" class="ramo activo" onclick="aprobar('botanica')">🌱 Botánica (4 SCT)</div>
+    <div id="zoologia" class="ramo activo" onclick="aprobar('zoologia')">🦋 Zoología (4 SCT)</div>
+    <div id="intro" class="ramo activo" onclick="aprobar('intro')">📚 Introducción a Medicina Veterinaria (4 SCT)</div>
+    <div id="matematicas" class="ramo activo" onclick="aprobar('matematicas')">➗ Matemáticas (4 SCT)</div>
+    <div id="comunicacion" class="ramo activo" onclick="aprobar('comunicacion')">🗣 Comunicación Oral y Escrita (3 SCT)</div>
   </div>
 
-  <div class="semestre">
-    <h2>Semestre 2</h2>
-    <div id="anatomia_comp" class="ramo" onclick="aprobar('anatomia_comp')">Anatomía Comparada (6 SCT)</div>
-    <div id="bio_histo" class="ramo" onclick="aprobar('bio_histo')">Biol. Desarrollo e Histología (6 SCT)</div>
-    <div id="quimica" class="ramo activo" onclick="aprobar('quimica')">Química (4 SCT)</div>
-    <div id="ecologia" class="ramo" onclick="aprobar('ecologia')">Ecología General (3 SCT)</div>
-    <div id="bioestadistica" class="ramo" onclick="aprobar('bioestadistica')">Bioestadística (4 SCT)</div>
-    <div id="herramientas" class="ramo activo" onclick="aprobar('herramientas')">Herramientas Comp. (3 SCT)</div>
-    <div id="practica" class="ramo activo" onclick="aprobar('practica')">Práctica Formativa (1 SCT)</div>
+  <!-- SEMESTRE 2 -->
+  <div class="semestre s2">
+    <h2>🔬 Semestre 2</h2>
+    <div id="anatomia_comp" class="ramo" onclick="aprobar('anatomia_comp')">🦴 Anatomía Comparada (6 SCT)</div>
+    <div id="bio_histo" class="ramo" onclick="aprobar('bio_histo')">🧫 Biología del Desarrollo e Histología (6 SCT)</div>
+    <div id="quimica" class="ramo activo" onclick="aprobar('quimica')">⚗️ Química (4 SCT)</div>
+    <div id="ecologia" class="ramo" onclick="aprobar('ecologia')">🌿 Ecología General (3 SCT)</div>
+    <div id="bioestadistica" class="ramo" onclick="aprobar('bioestadistica')">📊 Bioestadística (4 SCT)</div>
+    <div id="herramientas" class="ramo activo" onclick="aprobar('herramientas')">💻 Herramientas Computacionales (3 SCT)</div>
+    <div id="practica" class="ramo activo" onclick="aprobar('practica')">🧪 Práctica Formativa (1 SCT)</div>
   </div>
 
-  <div class="semestre">
-    <h2>Semestre 3</h2>
-    <div id="fisio1" class="ramo" onclick="aprobar('fisio1')">Fisiología I (6 SCT)</div>
-    <div id="epidemio" class="ramo" onclick="aprobar('epidemio')">Epidemiología (4 SCT)</div>
-    <div id="bioquimica" class="ramo" onclick="aprobar('bioquimica')">Bioquímica (6 SCT)</div>
-    <div id="etologia" class="ramo activo" onclick="aprobar('etologia')">Etología y Bienestar Animal (4 SCT)</div>
-    <div id="bioetica" class="ramo activo" onclick="aprobar('bioetica')">Bioética y Deontología (3 SCT)</div>
-    <div id="economia" class="ramo" onclick="aprobar('economia')">Economía (4 SCT)</div>
+  <!-- SEMESTRE 3 -->
+  <div class="semestre s3">
+    <h2>🌿 Semestre 3</h2>
+    <div id="fisio1" class="ramo" onclick="aprobar('fisio1')">🧠 Fisiología I (6 SCT)</div>
+    <div id="epidemio" class="ramo" onclick="aprobar('epidemio')">📈 Epidemiología (4 SCT)</div>
+    <div id="bioquimica" class="ramo" onclick="aprobar('bioquimica')">🧪 Bioquímica (6 SCT)</div>
+    <div id="etologia" class="ramo activo" onclick="aprobar('etologia')">🐾 Etología y Bienestar Animal (4 SCT)</div>
+    <div id="bioetica" class="ramo activo" onclick="aprobar('bioetica')">⚖️ Bioética y Deontología (3 SCT)</div>
+    <div id="economia" class="ramo" onclick="aprobar('economia')">💰 Economía (4 SCT)</div>
   </div>
 
   <div id="info" style="margin-top: 30px;"></div>
@@ -94,19 +108,19 @@
     const ramos = {
       // Semestre 1
       anatomia: { nombre: "Anatomía Animal", desbloquea: ["anatomia_comp", "fisio1"] },
-      biologia: { nombre: "Biología", desbloquea: ["bio_histo", "inmunologia", "micro1"] },
+      biologia: { nombre: "Biología", desbloquea: ["bio_histo"] },
       botanica: { nombre: "Botánica", desbloquea: ["ecologia"] },
-      zoologia: { nombre: "Zoología", desbloquea: ["ecologia", "parasitologia"] },
-      intro: { nombre: "Intro a Medicina Vet", desbloquea: [] },
-      matematicas: { nombre: "Matemáticas", desbloquea: ["bioestadistica", "genetica", "epidemio", "economia"] },
-      comunicacion: { nombre: "Comunicación Oral", desbloquea: [] },
+      zoologia: { nombre: "Zoología", desbloquea: ["ecologia"] },
+      intro: { nombre: "Introducción a Medicina Veterinaria", desbloquea: [] },
+      matematicas: { nombre: "Matemáticas", desbloquea: ["bioestadistica", "epidemio", "economia"] },
+      comunicacion: { nombre: "Comunicación Oral y Escrita", desbloquea: [] },
 
       // Semestre 2
       anatomia_comp: { nombre: "Anatomía Comparada", requisitos: ["anatomia"], desbloquea: [] },
-      bio_histo: { nombre: "Biol. del Desarrollo e Histología", requisitos: ["biologia"], desbloquea: [] },
+      bio_histo: { nombre: "Biología del Desarrollo e Histología", requisitos: ["biologia"], desbloquea: [] },
       quimica: { nombre: "Química", desbloquea: ["bioquimica", "fisio1"] },
       ecologia: { nombre: "Ecología General", requisitos: ["zoologia", "botanica"], desbloquea: [] },
-      bioestadistica: { nombre: "Bioestadística", requisitos: ["matematicas"], desbloquea: ["epidemio", "genetica", "economia"] },
+      bioestadistica: { nombre: "Bioestadística", requisitos: ["matematicas"], desbloquea: ["epidemio", "economia"] },
       herramientas: { nombre: "Herramientas Computacionales", desbloquea: [] },
       practica: { nombre: "Práctica Formativa", desbloquea: [] },
 
